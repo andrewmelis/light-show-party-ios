@@ -37,19 +37,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("yeehaw we're in the didReceiveRemoteNotification method with \(userInfo)")
         
         
-        let notificationMessage = parseNotificationDictionary(userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName("MessageFromServer", object: self, userInfo: ["message" : notificationMessage])
+        let dict = parseNotificationDictionary(userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName("MessageFromServer", object: self, userInfo: dict)
         
         completionHandler(UIBackgroundFetchResult.NoData)
     }
+//    
+//    func parseNotificationDictionary(notificationDictionary: [NSObject : AnyObject]) -> String {
+//        var notificationMessage = "0,0,0"
+//        if let apsDict = notificationDictionary["aps"] as? [String : AnyObject], alert = apsDict["alert"] as? String {
+//            notificationMessage = alert
+//        }
+//        println(notificationMessage)
+//        return notificationMessage
+//    }
     
-    func parseNotificationDictionary(notificationDictionary: [NSObject : AnyObject]) -> String {
-        var notificationMessage = "0,0,0"
-        if let apsDict = notificationDictionary["aps"] as? [String : AnyObject], alert = apsDict["alert"] as? String {
-            notificationMessage = alert
+    func parseNotificationDictionary(notificationDictionary: [NSObject : AnyObject]) -> [String : String] {
+        var partyDict = ["name": "coolguy", "rgb": "0.5,0.5,0.5"]
+        
+        if let parsedDict = notificationDictionary["party"] as? [String : String] {
+            partyDict = parsedDict
         }
-        println(notificationMessage)
-        return notificationMessage
+        println(partyDict)
+        return partyDict
     }
 
     func applicationWillResignActive(application: UIApplication) {

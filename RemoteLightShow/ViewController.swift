@@ -24,30 +24,18 @@ class ViewController: UIViewController {
     
     func handleMessageFromServer(notification: NSNotification) {
         println(notification)
-        if let rgbaString = notification.userInfo!["message"] as? String {
-            stuffLabel.text = rgbaString
-            if let rgbaArray = rgbaString.componentsSeparatedByString(",") as? [String] {
-                let cgfloatArray = rgbaArray.map {
-                    CGFloat(($0 as NSString).doubleValue)
-                }
-                
-                println(rgbaArray)
-                
-                
-                
-                
-//                let red = CGFloat((rgbaArray[0]! as NSString).doubleValue)
-//                let red = CGFloat(NSNumberFormatter().numberFromString(rgbaArray[0]!))
-//                let green = CGFloat(NSNumberFormatter().numberFromString(rgbaArray[1]!))
-//                let blue = CGFloat(NSNumberFormatter().numberFromString(rgbaArray[2]!))
-//                let alpha = (rgbaArray[3] as NSString).floatValue
-                
-//                self.view.backgroundColor = UIColor(red: cgfloatArray[0], green: cgfloatArray[1], blue: cgfloatArray[2], alpha: cgfloatArray[3])
-                self.view.backgroundColor = UIColor(red: cgfloatArray[0], green: cgfloatArray[1], blue: cgfloatArray[2], alpha: 1)
+        if let partyDict = notification.userInfo as? [String : String] {
+            let name = partyDict["name"]!
+            stuffLabel.text = "\(name)'s party"
+            
+            println(partyDict)
+            let rgbString = partyDict["rgb"]!
+            let rbgaArray = rgbString.componentsSeparatedByString(",")
+            let cgfloatArray = rbgaArray.map {
+                CGFloat(($0 as NSString).doubleValue)
             }
+            self.view.backgroundColor = UIColor(red: cgfloatArray[0], green: cgfloatArray[1], blue: cgfloatArray[2], alpha: 1)
+           
         }
-
-//        self.view.backgroundColor = UIColor.redColor()
     }
 }
-

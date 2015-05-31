@@ -162,6 +162,11 @@
 					2809B21C1B1A713800DB0D97 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = X3CP6LH669;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					2809B2311B1A713800DB0D97 = {
 						CreatedOnToolsVersion = 6.3.2;

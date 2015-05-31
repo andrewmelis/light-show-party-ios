@@ -161,6 +161,7 @@
 				TargetAttributes = {
 					2809B21C1B1A713800DB0D97 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = X3CP6LH669;
 					};
 					2809B2311B1A713800DB0D97 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -342,9 +343,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = RemoteLightShow/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -352,9 +356,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = RemoteLightShow/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -411,6 +418,7 @@
 				2809B23E1B1A713800DB0D97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2809B23F1B1A713800DB0D97 /* Build configuration list for PBXNativeTarget "RemoteLightShowTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +427,7 @@
 				2809B2411B1A713800DB0D97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  RemoteLightShow
-//
-//  Created by Andrew Melis on 5/30/15.
-//  Copyright (c) 2015 Andrew Melis. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -13,10 +5,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        println("hello")
+        registerAllNotificationSettings(application)
+        
         return true
+    }
+    
+    func registerAllNotificationSettings(application: UIApplication) {
+        let types = UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge
+        let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+        application.registerUserNotificationSettings(settings)
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        println("yo we registered for \(notificationSettings)")
+        application.registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        println("testing \(deviceToken)")
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println(error)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler:   (UIBackgroundFetchResult) -> Void) {
+        println("yeehaw we're in the didReceiveRemoteNotification method with \(userInfo)")
+        
+        
+        let notificationMessage = parseNotificationDictionary(userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName("MessageFromServer", object: self, userInfo: ["message" : notificationMessage])
+        
+        completionHandler(UIBackgroundFetchResult.NoData)
+    }
+    
+    func parseNotificationDictionary(notificationDictionary: [NSObject : AnyObject]) -> String {
+        var notificationMessage = "0,0,0"
+        if let apsDict = notificationDictionary["aps"] as? [String : AnyObject], alert = apsDict["alert"] as? String {
+            notificationMessage = alert
+        }
+        println(notificationMessage)
+        return notificationMessage
     }
 
     func applicationWillResignActive(application: UIApplication) {

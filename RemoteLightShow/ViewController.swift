@@ -30,12 +30,15 @@ class ViewController: UIViewController {
             
             println(partyDict)
             let rgbString = partyDict["rgb"]!
-            let rbgaArray = rgbString.componentsSeparatedByString(",")
-            let cgfloatArray = rbgaArray.map {
-                CGFloat(($0 as NSString).doubleValue)
-            }
-            self.view.backgroundColor = UIColor(red: cgfloatArray[0], green: cgfloatArray[1], blue: cgfloatArray[2], alpha: 1)
-           
+            setBackgroundFromPartyDictionary(rgbString)
         }
+    }
+    
+    func setBackgroundFromPartyDictionary(rgbString: String) {
+        let rbgaArray = rgbString.componentsSeparatedByString(",")
+        let cgfloatArray = rbgaArray.map {
+            CGFloat(($0 as NSString).doubleValue)
+        }
+        self.view.backgroundColor = UIColor(red: cgfloatArray[0], green: cgfloatArray[1], blue: cgfloatArray[2], alpha: 1)
     }
 }

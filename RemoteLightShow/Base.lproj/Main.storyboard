@@ -19,14 +19,20 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nothing Yet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7h-nF-dY0">
                                 <rect key="frame" x="167" y="233" width="266" height="133"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="bottom" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gdA-rK-lsf">
+                                <rect key="frame" x="167" y="20" width="266" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Z7h-nF-dY0" secondAttribute="centerX" id="cDh-C3-3wU"/>
-                            <constraint firstAttribute="centerY" secondItem="Z7h-nF-dY0" secondAttribute="centerY" id="w1X-HM-abn"/>
+                            <constraint firstAttribute="centerY" secondItem="Z7h-nF-dY0" secondAttribute="centerY" id="Ydu-7n-zVe"/>
+                            <constraint firstAttribute="centerX" secondItem="Z7h-nF-dY0" secondAttribute="centerX" id="gRC-vL-lEo"/>
+                            <constraint firstAttribute="centerX" secondItem="gdA-rK-lsf" secondAttribute="centerX" id="h03-me-Cav"/>
                         </constraints>
                     </view>
                     <connections>

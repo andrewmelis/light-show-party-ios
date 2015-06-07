@@ -8,7 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        println("hello")
+//        println("hello")
         registerAllNotificationSettings(application)
         
         return true
@@ -27,6 +27,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         println("testing \(deviceToken)")
+//        let tokenString = NSString(data: deviceToken, encoding: NSUTF8StringEncoding)
+        
+        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+        var tokenString = ""
+        
+        for var i = 0; i < deviceToken.length; i++ {
+            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+        }
+        
+        
+        let dict: [String: String] = ["token": tokenString]
+        println(dict)
+        NSNotificationCenter.defaultCenter().postNotificationName("RegisteredForNotifications", object: self, userInfo: dict)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -34,8 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler:   (UIBackgroundFetchResult) -> Void) {
-        println("yeehaw we're in the didReceiveRemoteNotification method with \(userInfo)")
-        
         
         let dict = parseNotificationDictionary(userInfo)
         NSNotificationCenter.defaultCenter().postNotificationName("MessageFromServer", object: self, userInfo: dict)
@@ -49,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let parsedDict = notificationDictionary["party"] as? [String : String] {
             partyDict = parsedDict
         }
-        println(partyDict)
         return partyDict
     }
 
